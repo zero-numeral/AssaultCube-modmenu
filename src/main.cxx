@@ -93,7 +93,8 @@ void mainloop()
     }
 }
 
-void clean_up() {
+void clean_up() 
+{
     MH_Uninitialize();
     SetWindowLongPtr(globals::game_hwnd, GWLP_WNDPROC, (LONG_PTR)o_WndProc);
     deinitialize_imgui();

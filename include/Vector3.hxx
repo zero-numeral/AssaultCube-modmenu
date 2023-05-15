@@ -1,6 +1,7 @@
 #pragma once
 
-struct Vector3 {
+struct Vector3
+{
     union
     {
         float data[3];

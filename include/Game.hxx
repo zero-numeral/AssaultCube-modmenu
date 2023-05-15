@@ -2,7 +2,8 @@
 
 #include "Player.hxx"
 
-class Game {
+class Game
+{
 public:
     static Player** EntityList();
     static int PlayersOnMap();
