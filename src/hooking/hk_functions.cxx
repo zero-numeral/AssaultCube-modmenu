@@ -7,6 +7,15 @@ LRESULT CALLBACK hk_WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     using namespace config;
 
+    switch (msg) 
+    {
+    case WM_KEYDOWN:
+        if (wParam == VK_INSERT) {
+            menu::active ^= true;
+            // TODO: fix cursor lock problem
+        }   
+    }
+
     if (menu::active) {
         ImGui_ImplWin32_WndProcHandler(hwnd, msg, wParam, lParam);
         return 1;

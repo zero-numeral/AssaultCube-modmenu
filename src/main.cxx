@@ -1,14 +1,4 @@
-#include "framework.hxx"
-#include "MinHook.h"
-#include "common/globals.hxx"
-#include "hooking/hk_functions.hxx"
-#include "render/imgui.hxx"
-
-void mainloop();
-void clean_up();
-bool initialize();
-void __stdcall start(HMODULE);
-BOOL WINAPI enumerate_windows(HWND, LPARAM);
+#include "main.hxx"
 
 BOOL WINAPI DllMain(
     HINSTANCE hinstDLL,
@@ -40,13 +30,11 @@ BOOL WINAPI enumerate_windows(HWND hWnd, LPARAM lParam)
 	return TRUE;
 }
 
-void __stdcall start(HMODULE hLibModule)
+void CALLBACK start(HMODULE hLibModule)
 {
 #ifdef DEBUG
     AllocConsole();
     freopen("CONOUT$", "w", stdout);
-    // GLfloat view_port[4] = { 0 };
-    // glGetFloatv(GL_VIEWPORT, view_port);
 #endif
 
     bool success = initialize();
