@@ -12,7 +12,7 @@ LRESULT CALLBACK hk_WndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_KEYDOWN:
         if (wParam == VK_INSERT) {
             menu::active ^= true;
-            // TODO: fix cursor lock problem
+            o_SDL_SetRelativeMouseMode(!menu::active);
         }   
     }
 
@@ -39,4 +39,15 @@ BOOL CALLBACK hk_wglSwapBuffers(HDC hdc)
     }
 
     return o_wglSwapBuffers(hdc);
+}
+
+int __cdecl hk_SDL_SetRelativeMouseMode(int enable) 
+{
+    using namespace config;
+
+    if (menu::active) {
+        enable = 0;
+    }
+
+    return o_SDL_SetRelativeMouseMode(enable);
 }

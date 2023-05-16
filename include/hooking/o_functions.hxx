@@ -6,3 +6,6 @@ inline wndproc_t o_WndProc;
 
 using wglSwapBuffers_t = BOOL (CALLBACK*)(HDC);
 inline wglSwapBuffers_t o_wglSwapBuffers;
+
+using SDL_SetRelativeMouseMode_t = int (__cdecl*)(int);
+inline SDL_SetRelativeMouseMode_t o_SDL_SetRelativeMouseMode;

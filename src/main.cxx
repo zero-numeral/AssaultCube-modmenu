@@ -61,8 +61,19 @@ bool initialize()
         return false;
     }
 
-    if (MH_CreateHookApi(L"opengl32.dll", "wglSwapBuffers", reinterpret_cast<LPVOID>(hk_wglSwapBuffers), reinterpret_cast<LPVOID*>(&o_wglSwapBuffers)) != MH_OK) {
+    if (MH_CreateHookApi(L"opengl32.dll", "wglSwapBuffers",
+                        reinterpret_cast<LPVOID>(hk_wglSwapBuffers),
+                        reinterpret_cast<LPVOID*>(&o_wglSwapBuffers))
+    != MH_OK) {
         DEBUG_MSG("wglSwapBuffers hook error");
+        return false;
+    }
+
+    if (MH_CreateHookApi(L"SDL2.dll", "SDL_SetRelativeMouseMode",
+                        reinterpret_cast<LPVOID>(hk_SDL_SetRelativeMouseMode),
+                        reinterpret_cast<LPVOID*>(&o_SDL_SetRelativeMouseMode)) 
+    != MH_OK) {
+        DEBUG_MSG("SDL_SetRelativeMouseMode hook error");
         return false;
     }
 
